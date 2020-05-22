@@ -1,42 +1,44 @@
-var ctx = null;
-var tileW = 32;
-var tileH = 32;
-var mapW = 13;
-var mapH = 13;
+let ctx = null;
+const tileW = 32;
+const tileH = 32;
+const mapW = 13;
+const mapH = 13;
 
-var xco = 3;
-var yco = 3;
+let xco = 3;
+let yco = 3;
 
-var grass = new Image();
+const grass = new Image();
 grass.src = "Images/Background - Grass.png";
-var forest = new Image();
+const forest = new Image();
 forest.src = "Images/Background - Forest.png";
-var hero = new Image();
+const hero = new Image();
 hero.src = "Images/Hero - Knight.png";
-var chest = new Image();
+const chest = new Image();
 chest.src = "Images/Item - Chest.png";
-var key = new Image();
+const key = new Image();
 key.src = "Images/Item - Key.png";
-var gatec = new Image();
+const gatec = new Image();
 gatec.src = "Images/Background - Gate.png";
-var gateo = new Image();
+const gateo = new Image();
 gateo.src = "Images/Background - Open Gate.png";
-var mfloor = new Image();
+const mfloor = new Image();
 mfloor.src = "Images/Background - Mountains Floor.png";
-var mountain = new Image();
+const mountain = new Image();
 mountain.src = "Images/Background - Mountains.png";
-var castle = new Image();
+const castle = new Image();
 castle.src = "Images/Background - Castle.png"
-var dgrass = new Image();
+const dgrass = new Image();
 dgrass.src = "Images/Background - Dark Grass.png";
 
-var c1 = true;
-var c2 = true;
-var c3 = true;
-var k1 = true;
-var g1 = true;
+tile = [grass, forest, forest, gatec, gateo, mountain, mfloor, castle, dgrass];
 
-var gamemap = [
+let c1 = true;
+let c2 = true;
+let c3 = true;
+let k1 = true;
+let g1 = true;
+
+let gamemap = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -58,37 +60,12 @@ window.onload = function() {
 }
 
 function drawGame() {
-    if (ctx == null) {return;}
-    for(var y = 0; y < mapH; y++){
-        for(var x = 0; x < mapW; x++){
-            switch(gamemap[y][x]){
-                case 0:
-                    ctx.drawImage(grass, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 1:
-                    ctx.drawImage(forest, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 2:
-                    ctx.drawImage(forest, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 3:
-                    ctx.drawImage(gatec, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 4:
-                    ctx.drawImage(gateo, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 5:
-                    ctx.drawImage(mountain, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 6:
-                    ctx.drawImage(mfloor, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 7:
-                    ctx.drawImage(castle, x*tileW, y*tileH, tileW, tileH);
-                    break;
-                case 8:
-                    ctx.drawImage(dgrass, x*tileW, y*tileH, tileW, tileH);
-            }
+    if (ctx == null) {
+        return;
+    }
+    for (let y = 0; y < mapH; y++) {
+        for (let x = 0; x < mapW; x++) {
+            ctx.drawImage(tile[gamemap[y][x]], x * tileW, y * tileH, tileW, tileH);
         }
     }
     ctx.drawImage(hero, xco * 32, yco * 32, 32, 32);
